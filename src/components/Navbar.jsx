@@ -40,7 +40,7 @@ const Navbar = () => {
       {/* Dynamic Background Layer */}
       <div 
         className={`absolute inset-0 transition-all duration-300 ${
-          isScrolled ? 'bg-bg-dark/90 backdrop-blur-md shadow-lg border-b border-white/5' : 'bg-transparent'
+          isScrolled && !isOpen ? 'bg-bg-dark/90 backdrop-blur-md shadow-lg border-b border-white/5' : 'bg-transparent'
         }`}
       />
 
