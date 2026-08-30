@@ -36,7 +36,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50">
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Dynamic Background Layer */}
       <div 
         className={`absolute inset-0 transition-all duration-300 ${
@@ -79,33 +80,34 @@ const Navbar = () => {
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
-
-      {/* Mobile Nav Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-black/90 backdrop-blur-md md:hidden pt-24 px-6 pb-6 flex flex-col gap-4 overflow-y-auto"
-          >
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className="text-gray-200 text-2xl font-semibold py-4 border-b border-white/10 hover:text-accent transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-            <Button href="#contact" variant="primary" size="lg" className="mt-8 w-full" onClick={(e) => handleLinkClick(e, '#contact')}>
-              JOIN NOW
-            </Button>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
+
+    {/* Mobile Nav Overlay - Moved OUTSIDE nav to fix iOS blur clipping bug */}
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-2xl md:hidden pt-24 px-6 pb-6 flex flex-col gap-4 overflow-y-auto"
+        >
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={(e) => handleLinkClick(e, link.href)}
+              className="text-gray-200 text-2xl font-semibold py-4 border-b border-white/10 hover:text-accent transition-colors"
+            >
+              {link.name}
+            </a>
+          ))}
+          <Button href="#contact" variant="primary" size="lg" className="mt-8 w-full" onClick={(e) => handleLinkClick(e, '#contact')}>
+            JOIN NOW
+          </Button>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   );
 };
 
