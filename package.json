@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Premium white-label gym website platform",
   "scripts": {
+    "postinstall": "cd client && npm install --include=optional && cd ../server && npm install",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "cd client && npm run dev",
     "server": "cd server && npm run dev",
