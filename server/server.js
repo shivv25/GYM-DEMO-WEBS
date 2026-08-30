@@ -42,10 +42,15 @@ app.use('/api/dashboard', dashboardRoutes);
 
 app.use(errorHandler);
 
+// Establish DB connection globally for serverless environment
+connectDB();
+
 const PORT = process.env.PORT || 5000;
 
-connectDB().then(() => {
+if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
   });
-});
+}
+
+export default app;
