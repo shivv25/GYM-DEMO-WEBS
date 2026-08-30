@@ -87,19 +87,19 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-bg-dark/60 backdrop-blur-2xl border-b border-white/10 p-6 shadow-2xl md:hidden flex flex-col gap-4"
+            className="fixed inset-0 z-40 bg-[#0a0a0a]/80 backdrop-blur-xl md:hidden pt-24 px-6 pb-6 flex flex-col gap-4 overflow-y-auto"
           >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className="text-gray-200 text-lg font-medium py-2 border-b border-white/5 hover:text-accent transition-colors"
+                className="text-gray-200 text-2xl font-semibold py-4 border-b border-white/10 hover:text-accent transition-colors"
               >
                 {link.name}
               </a>
             ))}
-            <Button href="#contact" variant="primary" size="md" className="mt-4 w-full" onClick={(e) => handleLinkClick(e, '#contact')}>
+            <Button href="#contact" variant="primary" size="lg" className="mt-8 w-full" onClick={(e) => handleLinkClick(e, '#contact')}>
               JOIN NOW
             </Button>
           </motion.div>
