@@ -36,12 +36,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-bg-dark/90 backdrop-blur-md shadow-lg border-b border-white/5 py-4' : 'bg-transparent py-6'
-      }`}
-    >
-      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 right-0 z-50">
+      {/* Dynamic Background Layer */}
+      <div 
+        className={`absolute inset-0 transition-all duration-300 ${
+          isScrolled ? 'bg-bg-dark/90 backdrop-blur-md shadow-lg border-b border-white/5' : 'bg-transparent'
+        }`}
+      />
+
+      <div className={`relative container mx-auto px-4 md:px-6 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-4' : 'py-6'}`}>
         <a href="#home" className="flex items-center gap-2 group" onClick={(e) => handleLinkClick(e, '#home')}>
           <Dumbbell className="w-8 h-8 text-accent group-hover:rotate-12 transition-transform" />
           <span className="font-heading font-black text-2xl tracking-tighter text-white">
